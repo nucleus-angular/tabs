@@ -16,12 +16,12 @@ angular.module('nag.tabs', [
         options: '=nagTabs'
       },
       compile: function(element, attributes, transclude) {
-        $(element).find('.nag-tabs-container .nag-tab').each(function(key, value) {
-          $(element).find('.nag-tabs-container .nag-tab:nth-child(' + (key + 1) + ')').attr('ng-click', 'switchTab(\'' + $(this).data('tab') + '\')');
+        $(element).find('.tabs-container .tab').each(function(key, value) {
+          $(element).find('.tabs-container .tab:nth-child(' + (key + 1) + ')').attr('ng-click', 'switchTab(\'' + $(this).data('tab') + '\')');
         });
 
         //element.html($compile(template)(scope));
-        $(element).addClass('nag-tabs');
+        $(element).addClass('tabs');
 
         return function(scope, element, attributes) {
           scope.options = nagDefaults.getTabsOptions(scope.options);
@@ -30,14 +30,14 @@ angular.module('nag.tabs', [
             if(angular.isNumber(tab)) {
               //todo: this should work
               //tab = $(element).find('.tabs li:nth-child(' + tab + ')').data('tab');
-              tab = $(element).find('.nag-tabs-container .nag-tab:nth-child(' + (tab + 1) + ')').data('tab');
+              tab = $(element).find('.tabs-container .tab:nth-child(' + (tab + 1) + ')').data('tab');
             }
 
-            $(element).find('.nag-tabs-container .nag-tab').removeClass('active');
-            $(element).find('.nag-tabs-container .nag-tab[data-tab="' + tab + '"]').addClass('active');
+            $(element).find('.tabs-container .tab').removeClass('is-active');
+            $(element).find('.tabs-container .tab[data-tab="' + tab + '"]').addClass('is-active');
 
-            $(element).find('.nag-tab-content-item').removeClass('active');
-            $(element).find('.nag-tab-content-item[data-tab="' + tab + '"]').addClass('active');
+            $(element).find('.tab-content').removeClass('is-active');
+            $(element).find('.tab-content[data-tab="' + tab + '"]').addClass('is-active');
           }
 
           //load the default tab
