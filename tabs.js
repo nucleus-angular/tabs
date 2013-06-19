@@ -13,7 +13,7 @@ angular.module('nag.tabs', [
     return {
       restrict: 'A',
       scope: {
-        options: '=nagTabs'
+        options: '=?nagTabs'
       },
       compile: function(element, attributes, transclude) {
         $(element).find('.tabs-container .tab').each(function(key, value) {
