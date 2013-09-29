@@ -4,7 +4,7 @@
  * @todo: add ajax supported tabs
  *
  * @module nag.tabs
- * @directive nagTabs
+ * @ngdirective nagTabs
  *
  * @nghtmlattribute {object} nag-tabs Tells AngularJS this element is a tabs component and object passed in overrite default values for $scope.options
  */
@@ -34,11 +34,23 @@ angular.module('nag.tabs', [
           /**
            * Options
            *
+           * @ngscope
+           *
            * @property {object} options
            *   @property {number} [options.defaultTab=0] The index (zero-based) of the tabs that show be visible on load
            */
           scope.options = nagDefaults.getTabsOptions(scope.options);
           var $element = $(element);
+
+          /**
+           * Switch active tab
+           *
+           * @method switchTab
+           *
+           * @ngscope
+           *
+           * @param {string|int} tab Tab to switch to
+           */
           scope.switchTab = function(tab) {
             if(angular.isNumber(tab)) {
               tab = $(element).find('.tabs-container .tab:nth-child(' + (tab + 1) + ')').data('tab');
