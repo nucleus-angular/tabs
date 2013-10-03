@@ -1,5 +1,9 @@
 /**
- * Tabs component
+ * # Tabs
+ *
+ * This directive allows you to create a tabbed interface.
+ *
+ * EXAMPLE TODO
  *
  * @todo: add ajax supported tabs
  *
