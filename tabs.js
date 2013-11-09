@@ -15,26 +15,43 @@
 angular.module('nag.tabs', [
   'nag.core'
 ])
+.config([
+  'nagDefaultsProvider',
+  function(nagDefaultsProvider) {
+    /**
+     * Options
+     *
+     * @ngscope
+     * @property {object} options
+     *   @property {number} [defaultTab=1] The tab to load by default
+     */
+    nagDefaultsProvider.setOptions('tabs', {
+      defaultTab: 1
+    });
+  }
+])
 .directive('nagTabs', [
   '$timeout',
   '$http',
   '$compile',
   'nagDefaults',
-  function($timeout, $http, $compile, nagDefaults){
+  'nagHelper',
+  function($timeout, $http, $compile, nagDefaults, nagHelper){
     return {
       restrict: 'A',
       scope: {
         options: '=?nagTabs'
       },
+      templateUrl: nagHelper.templateUrl,
       compile: function(element, attributes, transclude) {
-        $(element).find('.tabs-container .tab').each(function(key, value) {
-          $(element).find('.tabs-container .tab:nth-child(' + (key + 1) + ')').attr('ng-click', 'switchTab(\'' + $(this).data('tab') + '\')');
+        //let automatically attached click events for the tabs
+        element.find('.tabs-container .tab').each(function(key, value) {
+          element.find('.tabs-container .tab:nth-child(' + (key + 1) + ')').attr('ng-click', 'switchTab(\'' + $(this).data('tab') + '\')');
         });
 
-        //element.html($compile(template)(scope));
-        $(element).addClass('tabs');
+        element.addClass('tabs');
 
-        return function(scope, element, attributes) {
+        return function postLink(scope, element, attributes) {
           /**
            * Options
            *
@@ -43,7 +60,7 @@ angular.module('nag.tabs', [
            * @property {object} options
            *   @property {number} [options.defaultTab=0] The index (zero-based) of the tabs that show be visible on load
            */
-          scope.options = nagDefaults.getTabsOptions(scope.options);
+          scope.options = nagDefaults.getOptions('tabs', scope.options);
           var $element = $(element);
 
           /**
@@ -57,7 +74,7 @@ angular.module('nag.tabs', [
            */
           scope.switchTab = function(tab) {
             if(angular.isNumber(tab)) {
-              tab = $(element).find('.tabs-container .tab:nth-child(' + (tab + 1) + ')').data('tab');
+              tab = $(element).find('.tabs-container .tab:nth-child(' + tab + ')').data('tab');
             }
 
             $(element).find('.tabs-container .tab').removeClass('is-active');
@@ -65,11 +82,11 @@ angular.module('nag.tabs', [
 
             $(element).find('.tab-content').removeClass('is-active');
             $(element).find('.tab-content[data-tab="' + tab + '"]').addClass('is-active');
-          }
+          };
 
           //load the default tab
           $timeout(function(){scope.switchTab(scope.options.defaultTab);}, 0);
-        }
+        };
       }
     }
   }
