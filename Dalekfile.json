@@ -1,0 +1,8 @@
+{
+  "tests": [
+    "dalek/tabs.js"
+  ],
+  "browser": [
+    "chrome"
+  ]
+}
