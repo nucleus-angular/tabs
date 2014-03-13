@@ -30,10 +30,7 @@ angular.module('nag.tabs.configurator', [
     });
   }
 ]);
-angular.module('nag.tabs', [
-  'nag.tabs.configurator',
-  'nag.core'
-])
+angular.module('nag.tabs')
 .directive('nagTabs', [
   '$timeout',
   '$http',
