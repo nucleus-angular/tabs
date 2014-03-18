@@ -12,24 +12,6 @@
  *
  * @nghtmlattribute {object} nag-tabs Tells AngularJS this element is a tabs component and object passed in overrite default values for $scope.options
  */
-angular.module('nag.tabs.configurator', [
-  'nag.core'
-])
-.run([
-  'nagDefaults',
-  function(nagDefaults) {
-    /**
-     * Options
-     *
-     * @ngscope
-     * @property {object} options
-     *   @property {number} [defaultTab=1] The tab to load by default
-     */
-    nagDefaults.setOptions('tabs', {
-      defaultTab: 1
-    });
-  }
-]);
 angular.module('nag.tabs')
 .directive('nagTabs', [
   '$timeout',
