@@ -9,6 +9,8 @@
     "moment": "2.x.x",
     "lodash": "2.x.x",
     "angular": "1.2.x",
-    "angular-ui-router": "0.2.0"
+    "angular-ui-router": "0.2.0",
+    "nucleus-angular-sass-framework": "master",
+    "bourbon": "3.2.1"
   }
 }
