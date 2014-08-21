@@ -25,7 +25,7 @@ angular.module('nag.tabs')
       scope: {
         options: '=?nagTabs'
       },
-      templateUrl: nagHelper.templateUrl,
+      template: nagHelper.template,
       compile: function(element, attributes, transclude) {
         //let automatically attached click events for the tabs
         element.find('.tabs-container .tab').each(function(key, value) {
