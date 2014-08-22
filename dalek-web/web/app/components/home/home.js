@@ -17,11 +17,4 @@ angular.module('app.home.home', [
   }
 ])
 .controller('HomeCtrl', ['$scope', function($scope) {
-  $scope.defaultOptions = {};
-  $scope.setDefaultTabStringOptions = {
-    defaultTab: 'two'
-  };
-  $scope.setDefaultTabNumberOptions = {
-    defaultTab: 2
-  };
 }]);

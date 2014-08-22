@@ -25,7 +25,7 @@ module.exports = {
     .done();
   },
 
-  'should be anble to set default tab as a number': function(test) {
+  'should be able to set default tab as a number': function(test) {
     test.open('http://localhost:3000/home')
     //angular - need to wait for angular to render this container
     .wait(500)

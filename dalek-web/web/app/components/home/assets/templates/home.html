@@ -1,5 +1,37 @@
 <div class="home-page">
-  <div nag-tabs="defaultOptions" data-ut="default" data-template="/app/components/home/assets/templates/tabs-defaults.html"></div>
-  <div nag-tabs="setDefaultTabStringOptions" data-ut="set-default-tab-string" data-template="/app/components/home/assets/templates/tabs-set-default-tab-string.html"></div>
-  <div nag-tabs="setDefaultTabNumberOptions" data-ut="set-default-tab-number" data-template="/app/components/home/assets/templates/tabs-set-default-tab-number.html"></div>
+  <div nag-tabs data-ut="default">
+    <ul class="tabs-container">
+      <li class="tab" data-tab="one">one</li>
+      <li class="tab" data-tab="two">two</li>
+    </ul>
+    <div class="tab-content" data-tab="one">
+      This is content for tab one.
+    </div>
+    <div class="tab-content" data-tab="two">
+      This is content for tab two.
+    </div>
+  </div>
+  <div nag-tabs data-default-tab="two" data-ut="set-default-tab-string">
+    <ul class="tabs-container">
+      <li class="tab" data-tab="one">one</li>
+      <li class="tab" data-tab="two">two</li>
+    </ul>
+    <div class="tab-content" data-tab="one">
+      This is content for tab one.
+    </div>
+    <div class="tab-content" data-tab="two">
+      This is content for tab two.
+    </div>
+  </div>
+  <div nag-tabs data-default-tab="2" data-ut="set-default-tab-number">
+    <ul class="tabs-container">
+      <li class="tab" data-tab="one">one</li>
+      <li class="tab" data-tab="two">two</li>
+    </ul>
+    <div class="tab-content" data-tab="one">
+      This is content for tab one.
+    </div>
+    <div class="tab-content" data-tab="two">
+      This is content for tab two.
+    </div></div>
 </div>

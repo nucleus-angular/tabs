@@ -1,4 +1,4 @@
-/**
+ /**
  * # Tabs
  *
  * This directive allows you to create a tabbed interface.
@@ -10,7 +10,8 @@
  * @module nag.tabs
  * @ngdirective nagTabs
  *
- * @nghtmlattribute {object} nag-tabs Tells AngularJS this element is a tabs component and object passed in overrite default values for $scope.options
+ * @nghtmlattribute {null} nag-tabs Tells AngularJS this element is a tabs component and object passed in overrite default values for $scope.options
+ * @nghtmlattrubyte {number|string} data-default-tab The default tab to load by number of data-tab attribute
  */
 angular.module('nag.tabs')
 .directive('nagTabs', [
@@ -22,9 +23,7 @@ angular.module('nag.tabs')
   function($timeout, $http, $compile, nagDefaults, nagHelper){
     return {
       restrict: 'A',
-      scope: {
-        options: '=?nagTabs'
-      },
+      scope: true,
       template: nagHelper.template,
       compile: function(element, attributes, transclude) {
         //let automatically attached click events for the tabs
@@ -35,15 +34,8 @@ angular.module('nag.tabs')
         element.addClass('tabs');
 
         return function postLink(scope, element, attributes) {
-          /**
-           * Options
-           *
-           * @ngscope
-           *
-           * @property {object} options
-           *   @property {number} [options.defaultTab=0] The index (zero-based) of the tabs that show be visible on load
-           */
-          scope.options = nagDefaults.getOptions('tabs', scope.options);
+          scope.options = nagDefaults.getOptions('tabs', attributes);
+          console.log(scope.options);
           var $element = $(element);
 
           /**
@@ -56,7 +48,8 @@ angular.module('nag.tabs')
            * @param {string|int} tab Tab to switch to
            */
           scope.switchTab = function(tab) {
-            if(angular.isNumber(tab)) {
+            //if tab is a number, need to convert it to the correct data-tab attribute value
+            if(!isNaN(parseInt(tab))) {
               tab = $(element).find('.tabs-container .tab:nth-child(' + tab + ')').data('tab');
             }
 
